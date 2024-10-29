@@ -1,0 +1,23 @@
+@using BlazorPaddleIntegration.SSR.Client.Models
+
+@inject IJSRuntime JSRuntime
+
+<button class="paddle_button btn btn-success" @onclick="OpenCheckout">
+    @Text
+</button>
+
+@code {
+    [Parameter, EditorRequired]
+    public required List<PaddleItem> Items { get; set; }
+
+    [Parameter, EditorRequired]
+    public required CustomerInfo CustomerInfo { get; set; }
+
+    [Parameter]
+    public string Text { get; set; } = "Subscribe";
+
+    private async Task OpenCheckout()
+    {
+        await JSRuntime.InvokeVoidAsync("openCheckout", Items, CustomerInfo);
+    }
+}

@@ -1,0 +1,19 @@
+﻿@page "/"
+@using BlazorPaddleIntegration.SSR.Client.Components
+@using BlazorPaddleIntegration.SSR.Client.Models
+
+<PageTitle>Home</PageTitle>
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+<PaddleButton Items="items" CustomerInfo="customerInfo" @rendermode="RenderMode.InteractiveWebAssembly" />
+
+@code {
+    private List<PaddleItem> items = new()
+{
+new PaddleItem("pri_01jbbtv3jepqt2wtns1jfkpx22", 1),
+};
+    private CustomerInfo customerInfo = new CustomerInfo("2024", "altudev02@gmail.com");
+}

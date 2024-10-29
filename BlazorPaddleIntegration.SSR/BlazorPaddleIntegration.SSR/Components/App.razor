@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <base href="/" />
+    <link rel="stylesheet" href="bootstrap/bootstrap.min.css" />
+    <link rel="stylesheet" href="app.css" />
+    <link rel="stylesheet" href="BlazorPaddleIntegration.SSR.styles.css" />
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <script src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
+    <HeadOutlet />
+</head>
+
+<body>
+    <Routes />
+    <script src="_framework/blazor.web.js"></script>
+    <script type="text/javascript">
+        Paddle.Environment.set("sandbox");
+        Paddle.Initialize({
+            token: "test_205fa82b3fd9674d0b1ae0d0057"
+        });
+
+        function openCheckout(items, customerInfo) {
+            Paddle.Checkout.open({
+                settings: {
+                    displayMode: "overlay",
+                    theme: "light",
+                    locale: "en",
+                    successUrl: "https://localhost:7044/payment/success",
+                },
+                items: items,
+                customData: {
+                    customerInfo: customerInfo
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>
